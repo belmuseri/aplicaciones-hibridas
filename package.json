@@ -2,9 +2,11 @@
   "name": "tp1-belen-museri",
   "version": "1.0.0",
   "description": "primer examen parcial, aplicaciones hibridas",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/belmuseri/aplicaciones-hibridas/issues"
   },
-  "homepage": "https://github.com/belmuseri/aplicaciones-hibridas#readme"
+  "homepage": "https://github.com/belmuseri/aplicaciones-hibridas#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.3"
+  }
 }
