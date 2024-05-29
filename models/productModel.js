@@ -1,11 +1,14 @@
+// Modelo de Producto
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
-    stock: { type: Number, required: true }
-});
+    name: String,
+    price: Number,
+    stock: Number,
+    img: String
+})
 
 const Product = mongoose.model('Product', productSchema);
+// Exporto el Objeto Product
 
-export default Product;
+export default Product

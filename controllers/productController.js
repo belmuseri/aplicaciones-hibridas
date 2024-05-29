@@ -26,18 +26,14 @@ async function getProductById( req, res) {
 // Crear un nuevo producto
 async function createProduct( req, res) {
     try {
-        const { name, price, stock } = req.body;
-
-        // Validaciones
-        if (!name || !price || !stock) {
-            return res.status(400).json({ message: 'Falta el nombre, precio o stock' });
-        }
-
-        const newProduct = new Product({ name, price, stock });
+        const product = req.body;
+        const newProduct = new Product(req.body);
         await newProduct.save();
-        res.status(201).json({ message: 'Producto creado exitosamente', data: newProduct });
+        res.status(200).json({ newProduct});
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error(error);
+        res.status(500).json({ message: error, data: []});
     }
 }
 
@@ -57,17 +53,18 @@ async function updateProduct( req, res) {
 }
 
 // Eliminar un producto
-async function deleteProduct( req, res) {
+async function deleteProductById( req, res) {
     try {
-        const product = await Product.findByIdAndDelete(req.params.id);
-        if (!product) {
-            return res.status(404).json({ message: 'El producto no ha sido enconrtado, no puede ser eliminado' });
-        }
-        res.status(200).json({ message: 'Producto eliminado correctamente' });
+        
+        const id = req.params.id;
+        const products = await Product.findByIdAndDelete( id);
+        res.status(200).json({ message: 'Ok', data: products});
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error(error);
+        res.status(500).json({ message: error, data: []});
     }
 }
 
 // Exporto las funciones
- export { createProduct, getProducts, updateProduct, deleteProduct, getProductById}
+ export { createProduct, getProducts, updateProduct, deleteProductById, getProductById}
